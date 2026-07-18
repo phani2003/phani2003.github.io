@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>phani@cloud-ai:~$</title>
+<meta name="description" content="Phani — Cloud & AI Platform Engineer. Interactive terminal portfolio." />
+
+<!-- Favicon (inline terminal glyph, no external asset needed) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230d1117%22/><text x=%2250%25%22 y=%2262%25%22 font-size=%2255%22 fill=%22%2358a6ff%22 text-anchor=%22middle%22 font-family=%22monospace%22>&gt;_</text></svg>" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Ambient background grid, purely decorative -->
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- ===================== BOOT SCREEN ===================== -->
+  <section id="boot-screen" class="boot-screen" aria-live="polite">
+    <pre id="boot-output" class="boot-output"></pre>
+  </section>
+
+  <!-- ===================== TERMINAL APP ===================== -->
+  <main id="terminal-app" class="terminal-app hidden">
+
+    <div class="terminal-window" id="terminal-window">
+
+      <!-- Fake window chrome, like a real terminal emulator -->
+      <header class="terminal-titlebar">
+        <div class="tb-dots" aria-hidden="true">
+          <span class="dot dot-close"></span>
+          <span class="dot dot-min"></span>
+          <span class="dot dot-max"></span>
+        </div>
+        <div class="tb-title">visitor@phani: ~</div>
+        <div class="tb-status">
+          <span class="status-dot"></span>
+          <span id="tb-clock">00:00:00</span>
+        </div>
+      </header>
+
+      <!-- Scrollable output history -->
+      <div class="terminal-body" id="terminal-body" tabindex="-1">
+        <div id="output-stream" class="output-stream"></div>
+
+        <!-- Active input line -->
+        <div class="input-line">
+          <span class="prompt">
+            <span class="prompt-user">visitor</span><span class="prompt-at">@</span><span class="prompt-host">phani</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-dollar">$</span>
+          </span>
+          <div class="input-wrap">
+            <input
+              type="text"
+              id="cmd-input"
+              class="cmd-input"
+              autocomplete="off"
+              autocapitalize="off"
+              spellcheck="false"
+              aria-label="Terminal command input"
+            />
+            <span class="ghost-hint" id="ghost-hint"></span>
+          </div>
+        </div>
+      </div>
+
+      <footer class="terminal-footer">
+        <span>type <button class="inline-cmd" data-cmd="help">help</button> to see all commands</span>
+        <span class="footer-sep">·</span>
+        <span>Tab: autocomplete</span>
+        <span class="footer-sep">·</span>
+        <span>↑↓: history</span>
+        <span class="footer-sep">·</span>
+        <span>Ctrl+L: clear</span>
+      </footer>
+    </div>
+
+    <!-- Tap-to-focus overlay for mobile -->
+    <button id="focus-catcher" class="focus-catcher" aria-label="Focus terminal input"></button>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
